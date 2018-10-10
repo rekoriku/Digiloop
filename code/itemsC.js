@@ -16,11 +16,11 @@ module.exports = {
         
         if (userlvl != 0) {
             //query = `SELECT * FROM junk where owner = 8 AND status = 1`
-            query = longquery + '(junk.status = 1 OR junk.status = 2)'
-            /*query = `SELECT junk.junkID,junk.category,junk.subCat,junk.weight,junk.size,junk.description,junk.picture,junk.pcs,junk.pickupaddr,junk.junkdate,
+            //query = longquery + 'junk.status = 1 OR junk.status = 2'
+            query = `SELECT junk.junkID,junk.category,junk.subCat,junk.weight,junk.size,junk.description,junk.picture,junk.pcs,junk.pickupaddr,junk.junkdate,
             junk.junkdateadded,junk.status,junk.owner,junk.fetcher,junk.city,junk.zipcode,junk.latitude,junk.longitude,junk.wishbox,
             junk.iscompany,junk.itemphone,users.fname,users.lname,users.company 
-            FROM junk INNER JOIN users ON junk.owner = users.id WHERE junk.status = 1 OR junk.status = 2`*/
+            FROM junk INNER JOIN users ON junk.owner = users.id WHERE junk.status = 1 OR junk.status = 2`
         } else {
             query = 'SELECT * FROM junk INNER JOIN users ON junk.owner = users.id'
         }
