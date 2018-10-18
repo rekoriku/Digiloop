@@ -29,14 +29,14 @@ var middleware = require('./code/middleware.js');
 var RedisStore = require('connect-redis')(session)
 var compression = require('compression')
 var redis = require('redis')
-var baseurl = '/prod'
+var baseurl = require('./config/baseurl')
 var sessionInfo = require('./config/sessionInfo')
 // configuration ===============================================================
 
 require('./passport')(passport); // pass passport for configuration
 
 //CORS
-let whitelist = ['http://localhost:3000', 'http://35.228.227.224:3000'];
+let whitelist = ['http://localhost:3000'];
 var corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
@@ -92,7 +92,7 @@ require('./routes/routes.js')(app, passport, baseurl);
 app.use(baseurl, recoverPassword);
 app.use(baseurl, categories)
 app.use(baseurl, accountVerify)
-app.all('*', middleware.isLoggedIn)
+app.all('*', middleware.isLoggedIn) //require login for all under this
 app.use(baseurl, announcements, users, items)
 app.use(baseurl+'/images', express.static('./kuvat'), serveIndex('./kuvat', { 'icons': true }))
 
