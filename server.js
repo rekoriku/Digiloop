@@ -29,6 +29,8 @@ var middleware = require('./code/middleware.js');
 var RedisStore = require('connect-redis')(session)
 var compression = require('compression')
 var redis = require('redis')
+//config
+var port = require('./config/portConfig')
 var baseurl = require('./config/baseurl')
 var sessionInfo = require('./config/sessionInfo')
 // configuration ===============================================================
@@ -108,4 +110,4 @@ app.use((error, req, res, next) => {
 });
 
 
-app.listen(5000);
+app.listen(port);
